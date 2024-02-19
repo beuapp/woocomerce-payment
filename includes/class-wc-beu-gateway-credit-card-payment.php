@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
+	protected $msg = array();
     private $helper;
     private $test_mode;
     private $payment_url;
@@ -13,6 +14,7 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
     private $flow;
     private $profile_id;
     private $short_id;
+    private $percentage_beu_cd;
 
 
     public function __construct() {
@@ -37,9 +39,8 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
         $this->flow                 =   $this->helper->beu_get_flow($this->test_mode);
         $this->profile_id           =   $this->get_option( 'profile_id' );
         $this->short_id             =   $this->get_option( 'short_id' );
-        $this->private_token        =   $this->get_option( 'private_token' );
         $this->description          =   $this->get_option( 'description' );
-        $this->percentage_beu       =   $this->get_option( 'percentage_beu_cd' );
+        $this->percentage_beu_cd    =   $this->get_option( 'percentage_beu_cd' );
 
         $this->msg['message'] 	= "";
         $this->msg['class'] 	= "";
@@ -82,11 +83,8 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
 
     function beu_tc_successful_request($value) {
         global $woocommerce;
-        $this->beu_tc_logger('check_beu_response', 'init check_beu_response');
-        $this->beu_tc_logger('$value', $value);
-        $this->beu_tc_logger('check_beu_response', $_REQUEST);
         $this->msg['message'] = 'TC Beu request';
-        $this->msg['class'] = 'woocommerce-message';
+        $this->msg['class'] = 'success-color';
 
         $redirect_url = ($this->return_url=="" || $this->return_url==0)?get_site_url() . "/":get_permalink($this->return_url);
 
@@ -126,7 +124,7 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
                         'message'=> $gateway_order_status['message'],
                     ];
                     break;
-            };
+            }
             return $result;
         }
     }
@@ -396,7 +394,7 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
 
         $percentage_beu_cd = $this->get_option( 'percentage_beu_cd' );
 
-        if (isset($percentage_beu_cd) && $percentage_beu_cd !== null) {
+        if (isset($percentage_beu_cd)) {
             $percentage_beu_cd = floatval(str_replace('%', '', $percentage_beu_cd));
         }
 
@@ -420,7 +418,6 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
     function beu_tc_display_commission_old() {
 
         $percentage_beu_cd = $this->get_option( 'percentage_beu_cd' );
-        $this->beu_tc_logger('beu_tc_display_commission_old', $percentage_beu_cd);
         $commission = WC()->cart->get_fee_total('Comisión TC Beu');
         if ($commission > 0) {
             ?>
@@ -464,7 +461,7 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
             'result' => 'success',
             'redirect' => add_query_arg(
                 'order',
-                $order->id,
+                $order->$order_id,
                 add_query_arg(
                     'key',
                     $order->order_key,
@@ -528,7 +525,6 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
 
     public function beu_tc_check_beu_response(){
         global $woocommerce;
-        $this->beu_tc_logger('beu_tc_check_beu_response', 'init');
         $order_id = isset($_GET['order_id']) ? sanitize_text_field($_GET['order_id']) : '';
         $order_key = isset($_GET['key']) ? sanitize_text_field($_GET['key']) : '';
         if (!empty($order_id) && !empty($order_key)) {
@@ -543,7 +539,7 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
                     switch ($transaction_status) {
                         case 'completed':
                             $this->msg['message'] = "Gracias por comprar con nosotros. ¡El pago se ha procesado exitosamente!.";
-                            $this->msg['class'] = 'woocommerce-message';
+                            $this->msg['class'] = 'success-color';
                             $order->update_status('completed');
                             $order->reduce_order_stock();
                             $order->add_order_note('Beu aprobó el pago con éxito. Orden: '.$order_id);
@@ -552,7 +548,7 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
                         case 'failed':
                             $order->update_status('failed', 'Gracias por comprar con nosotros, la transacción ha sido declinada. Resultado: '. $gateway_order_status['message']);
                             $this->msg['message'] = "Error en la validación con Beu: ". $gateway_order_status['message'];
-                            $this->msg['class'] = 'woocommerce-error';
+                            $this->msg['class'] = 'alert-color';
                             $order->add_order_note('Error transacción declinada con Beu. Orden:'.$order_id . ' ' . $gateway_order_status['message']);
                             break;
                     }
@@ -562,7 +558,7 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
                 if ($gateway_order_status['statusCode'] == 404) {
                     $order->update_status('failed', 'Gracias por comprar con nosotros. Resultado: '. $gateway_order_status['message']);
                     $this->msg['message'] = "Error en la validación con Beu: ". $gateway_order_status['message'];
-                    $this->msg['class'] = 'woocommerce-error';
+                    $this->msg['class'] = 'alert-color';
                     $order->add_order_note('Error en la validación con Beu. Orden:'.$order_id . ' ' . $gateway_order_status['message']);
                 }
 
@@ -571,7 +567,7 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
                     $order->reduce_order_stock();
                     $order->add_order_note('Beu el pago actualmente está en espera. Orden:'.$order_id);
                     $this->msg['message'] = "Gracias por comprar con nosotros. En estos momentos su transacción se encuentra en espera.";
-                    $this->msg['class'] = 'woocommerce-info';
+                    $this->msg['class'] = 'secondary-color';
                 }
             }
 
@@ -586,12 +582,8 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
     }
 
     function beu_tc_create_response_pages($success_content = '', $error_content = '') {
-        $this->beu_tc_logger('beu_tc_create_response_pages', 'init');
         $success_page_exists = get_page_by_title('Resultado transacción exitosa Beu');
         $error_page_exists = get_page_by_title('Resultado transacción fallida Beu');
-
-        $this->beu_tc_logger('beu_tc_create_response_pages', $success_page_exists);
-        $this->beu_tc_logger('$error_page_exists', $error_page_exists);
 
         if (!$success_page_exists) {
             $success_page = array(
@@ -628,7 +620,6 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
         $page_id = ($transaction_status === 'completed') ? get_option('beu_success_page_id') : get_option('error_page_id');
 
         $redirect_url = get_permalink($page_id);
-        $this->beu_tc_logger('process_payment_response', $redirect_url);
         wp_redirect($redirect_url);
         exit;
     }

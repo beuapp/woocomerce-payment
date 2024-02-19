@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class WC_Beu_Pse_Payment_Gateway extends WC_Payment_Gateway {
+	protected $msg = array();
     private $helper;
     private $test_mode;
     private $payment_url;
@@ -13,6 +14,7 @@ class WC_Beu_Pse_Payment_Gateway extends WC_Payment_Gateway {
     private $flow;
     private $profile_id;
     private $short_id;
+    private $percentage_beu_pse;
 
 
     public function __construct() {
@@ -37,7 +39,6 @@ class WC_Beu_Pse_Payment_Gateway extends WC_Payment_Gateway {
         $this->flow             =       $this->helper->beu_get_flow($this->test_mode);
         $this->profile_id       =       $this->get_option( 'profile_id' );
         $this->short_id         =       $this->get_option( 'short_id' );
-        $this->private_token    =       $this->get_option( 'private_token' );
         $this->description      =       $this->get_option( 'description' );
         $this->percentage_beu_pse=       $this->get_option( 'percentage_beu_pse' );
 
@@ -65,7 +66,7 @@ class WC_Beu_Pse_Payment_Gateway extends WC_Payment_Gateway {
 
         $commission_percentage = $this->get_option( 'percentage_beu_pse' );
 
-        if (isset($percentage_beu_pse) && $percentage_beu_pse !== null) {
+        if (isset($percentage_beu_pse)) {
             $commission_percentage = floatval(str_replace('%', '', $percentage_beu_pse));
         }
 
@@ -82,11 +83,8 @@ class WC_Beu_Pse_Payment_Gateway extends WC_Payment_Gateway {
 
     function beu_pse_successful_beu_request($value) {
         global $woocommerce;
-        $this->beu_pse_logger('check_beu_response', 'init check_beu_response');
-        $this->beu_pse_logger('$value', $value);
-        $this->beu_pse_logger('check_beu_response', $_REQUEST);
         $this->msg['message'] = 'PSE Beu request';
-        $this->msg['class'] = 'woocommerce-message';
+        $this->msg['class'] = 'success-color';
 
         $redirect_url = ($this->return_url=="" || $this->return_url==0)?get_site_url() . "/":get_permalink($this->return_url);
 
@@ -126,7 +124,7 @@ class WC_Beu_Pse_Payment_Gateway extends WC_Payment_Gateway {
                         'message'=> $gateway_order_status['message'],
                     ];
                     break;
-            };
+            }
             return $result;
         }
     }
@@ -395,7 +393,7 @@ class WC_Beu_Pse_Payment_Gateway extends WC_Payment_Gateway {
 
         $percentage_beu_pse = $this->get_option( 'percentage_beu_pse' );
 
-        if (isset($percentage_beu_pse) && $percentage_beu_pse !== null) {
+        if (isset($percentage_beu_pse)) {
             $percentage_beu_pse = floatval(str_replace('%', '', $percentage_beu_pse));
         }
 
@@ -461,7 +459,7 @@ class WC_Beu_Pse_Payment_Gateway extends WC_Payment_Gateway {
             'result' => 'success',
             'redirect' => add_query_arg(
                 'order',
-                $order->id,
+                $order->$order_id,
                 add_query_arg(
                     'key',
                     $order->order_key,
@@ -524,7 +522,6 @@ class WC_Beu_Pse_Payment_Gateway extends WC_Payment_Gateway {
 
     public function beu_pse_check_response(){
         global $woocommerce;
-        $this->beu_pse_logger('beu_pse_check_beu_response', 'init');
         $order_id = isset($_GET['order_id']) ? sanitize_text_field($_GET['order_id']) : '';
         $order_key = isset($_GET['key']) ? sanitize_text_field($_GET['key']) : '';
         if (!empty($order_id) && !empty($order_key)) {
@@ -539,7 +536,7 @@ class WC_Beu_Pse_Payment_Gateway extends WC_Payment_Gateway {
                     switch ($transaction_status) {
                         case 'completed':
                             $this->msg['message'] = "Gracias por comprar con nosotros. ¡El pago se ha procesado exitosamente!.";
-                            $this->msg['class'] = 'woocommerce-message';
+                            $this->msg['class'] = 'success-color';
                             $order->update_status('completed');
                             $order->reduce_order_stock();
                             $order->add_order_note('Beu aprobó el pago con éxito. Orden: '.$order_id);
@@ -548,7 +545,7 @@ class WC_Beu_Pse_Payment_Gateway extends WC_Payment_Gateway {
                         case 'failed':
                             $order->update_status('failed', 'Gracias por comprar con nosotros, la transacción ha sido declinada. Resultado: '. $gateway_order_status['message']);
                             $this->msg['message'] = "Error en la validación con Beu: ". $gateway_order_status['message'];
-                            $this->msg['class'] = 'woocommerce-error';
+                            $this->msg['class'] = 'alert-color';
                             $order->add_order_note('Error transacción declinada con Beu. Orden:'.$order_id . ' ' . $gateway_order_status['message']);
                             break;
                     }
@@ -558,7 +555,7 @@ class WC_Beu_Pse_Payment_Gateway extends WC_Payment_Gateway {
                 if ($gateway_order_status['statusCode'] == 404) {
                     $order->update_status('failed', 'Gracias por comprar con nosotros. Resultado: '. $gateway_order_status['message']);
                     $this->msg['message'] = "Error en la validación con Beu: ". $gateway_order_status['message'];
-                    $this->msg['class'] = 'woocommerce-error';
+                    $this->msg['class'] = 'alert-color';
                     $order->add_order_note('Error en la validación con Beu. Orden:'.$order_id . ' ' . $gateway_order_status['message']);
                 }
 
@@ -567,7 +564,7 @@ class WC_Beu_Pse_Payment_Gateway extends WC_Payment_Gateway {
                     $order->reduce_order_stock();
                     $order->add_order_note('Beu el pago actualmente está en espera. Orden:'.$order_id);
                     $this->msg['message'] = "Gracias por comprar con nosotros. En estos momentos su transacción se encuentra en espera.";
-                    $this->msg['class'] = 'woocommerce-info';
+                    $this->msg['class'] = 'secondary-color';
                 }
             }
 
@@ -620,7 +617,6 @@ class WC_Beu_Pse_Payment_Gateway extends WC_Payment_Gateway {
         $page_id = ($transaction_status === 'completed') ? get_option('beu_success_page_id') : get_option('error_page_id');
 
         $redirect_url = get_permalink($page_id);
-        $this->beu_pse_logger('process_payment_response', $redirect_url);
         wp_redirect($redirect_url);
         exit;
     }
