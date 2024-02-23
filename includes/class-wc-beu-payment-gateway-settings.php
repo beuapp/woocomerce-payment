@@ -21,11 +21,11 @@ class Beu_Payment_Gateway_Settings {
                 'test_payment_card_url' => 'https://payments-stg.beu.is',
                 'production_payment_card_url' => 'https://payments.beu.is',
                 'test_checkout_card_url' => 'https://beu-link-git-staging-beu.vercel.app/checkout',
-                'production_checkout_card_url' => 'https://beu-link-git-beu.vercel.app/checkout',
+                'production_checkout_card_url' => 'https://beu.is/checkout',
                 'test_payment_pse_url' => 'https://payments-stg.beu.is',
                 'production_payment_pse_url' => 'https://payments.beu.is',
                 'test_checkout_pse_url' => 'https://beu-link-git-staging-beu.vercel.app/checkout',
-                'production_checkout_pse_url' => 'https://beu-link-git-beu.vercel.app/checkout',
+                'production_checkout_pse_url' => 'https://beu.is/checkout',
                 'test_flow' => 'PAYMENT_LINK',
                 'production_flow' => 'PAYMENT_LINK',
             );
