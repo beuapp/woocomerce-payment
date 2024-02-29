@@ -23,9 +23,9 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
         $this->id                  =    'beu_tc';
         $this->icon                =    apply_filters('woocommerce_payment_beu_icon', $this->helper->beu_get_icon_card($this->get_option( 'test_mode' )));
         $this->has_fields          =    false;
-        $this->title               =    __('Pagos con BEU');
-        $this->method_title        =    __('Beu Tarjeta de Crédito');
-        $this->method_description  =    __('Pagar con Tarjeta de Crédito');
+        $this->title               =    __('Payments with BEU', 'woocommerce-beu');
+        $this->method_title        =    __('Beu Credit Card', 'woocommerce-beu');
+        $this->method_description  =    __('Pay by credit card card', 'woocommerce-beu');
 
         $this->init_form_fields();
         $this->init_settings();
@@ -142,9 +142,8 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
 
                 $gateway_order_status = $this->beu_tc_check_gateway_order_status($order_id);
 
-                if ($gateway_order_status !== 'PROCESSING') {
+                if ($gateway_order_status['message'] !== 'PROCESSING') {
                     return $gateway_order_status;
-                    break;
                 }
             }
         }
@@ -195,44 +194,44 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
     public function init_form_fields() {
         $this->form_fields = array(
             'test_mode' => array(
-                'title'         =>      __('Modo de Desarrollo'),
-                'label'         =>      __('Habilitar modo de desarrollo'),
+                'title'         =>      __('Development Mode', 'woocommerce-beu'),
+                'label'         =>      __('Enable mode development', 'woocommerce-beu'),
                 'type'          =>      'checkbox',
-                'description'   =>      __('Marca para habilitar el modo de desarrollo.'),
+                'description'   =>      __('Check to enable the development mode.', 'woocommerce-beu'),
                 'default'       =>      'no',
                 'desc_tip'      =>      true,
             ),
             'enabled' => array(
-                'title'         =>      __('Habilitar/Desabilitar'),
-                'label'         =>      __('Habilitar BEU'),
+                'title'         =>      __('Enable/Disable', 'woocommerce-beu'),
+                'label'         =>      __('Enable BEU', 'woocommerce-beu'),
                 'type'          =>      'checkbox',
-                'description'   =>      __('Activa o Inactiva el componente'),
+                'description'   =>      __('Activates or deactivates the component', 'woocommerce-beu'),
                 'default'       =>      'no',
                 'desc_tip'      =>      true,
             ),
             'title' => array(
-                'title' => __('Título'),
+                'title' => __('Title', 'woocommerce-beu'),
                 'type'=> 'text',
-                'description'   =>      __('Título que el usuario verá durante checkout.'),
-                'default'       =>      __('Tarjeta de Crédito')),
+                'description'   =>      __('Title that the user will see during checkout.', 'woocommerce-beu'),
+                'default'       =>      __('Credit Card', 'woocommerce-beu')),
             'description' => array(
-                'title'         =>      __('Descripción'),
-                'type'          =>      __('textarea'),
-                'description'   =>      __('Mensaje que se le va a mostrar al usuario durante el pago'),
-                'default'       =>      __('Pagar con Tarjeta de Crédito'),
+                'title'         =>      __('Description', 'woocommerce-beu'),
+                'type'          =>      __('textarea', 'woocommerce-beu'),
+                'description'   =>      __('Message to be displayed to the user during payment', 'woocommerce-beu'),
+                'default'       =>      __('Pay by credit card card', 'woocommerce-beu'),
                 'desc_tip'      =>      true,
             ),
             'return_url' => array(
-                'title'         =>      __('URL de Retorno'),
+                'title'         =>      __('Return URL', 'woocommerce-beu'),
                 'type'          =>      'select',
-                'options' 		=>      $this->helper->get_pages(__('Select Page')),
-                'description'   =>      __('Seleccioné URL de retorno después del pago.'),
+                'options' 		=>      $this->helper->get_pages(__('Select Page',  'woocommerce-beu')),
+                'description'   =>      __('I selected URL of return after payment.', 'woocommerce-beu'),
                 'desc_tip'      =>      true,
             ),
             'percentage_beu_cd' => array(
-                'title'         =>      __('% Beu'),
+                'title'         =>      __('% Beu', 'woocommerce-beu'),
                 'type'          =>      'text',
-                'description'   =>      __('Ingresa el % en Beu, ej: 3%'),
+                'description'   =>      __('Enter the % in Beu, e.g.: 3%', 'woocommerce-beu'),
                 'default'       =>      '0%',
                 'desc_tip'      =>      true,
                 'custom_attributes' => array(
@@ -241,23 +240,23 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
                 ),
             ),
             'profile_id' => array(
-                'title'         =>      __('ProfileId'),
+                'title'         =>      __('ProfileId', 'woocommerce-beu'),
                 'type'          =>      'text',
-                'description'   =>      __('Ingresa el ProfileId'),
+                'description'   =>      __('Enter the ProfileId', 'woocommerce-beu'),
                 'default'       =>      '',
                 'desc_tip'      =>      true,
             ),
             'short_id' => array(
-                'title'         =>      __('ShortId'),
+                'title'         =>      __('ShortId', 'woocommerce-beu'),
                 'type'          =>      'text',
-                'description'   =>      __('Ingresa el ShortId.'),
+                'description'   =>      __('Enter the ShortId.', 'woocommerce-beu'),
                 'default'       =>      '',
                 'desc_tip'      =>      true,
             ),
             'token' => array(
-                'title'         =>      __('Token'),
+                'title'         =>      __('Token', 'woocommerce-beu'),
                 'type'          =>      'text',
-                'description'   =>      __('Ingresa tu token aquí.'),
+                'description'   =>      __('Enter the token aquí.', 'woocommerce-beu'),
                 'default'       =>      '',
                 'desc_tip'      =>      true,
             ),
@@ -266,11 +265,11 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
 
     public function admin_options() {
         ?>
-        <h3><?php _e( 'Custom Payment Settings', 'woocommerce-beu-payment-gateway' ); ?></h3>
+        <h3><?php _e( 'Custom Payment Settings', 'woocommerce-beu' ); ?></h3>
         <div id="poststuff">
             <?php
             if ($this->test_mode == 'yes') {
-                echo '<h1 style="color: #8d0a0a;" class="wc-payment-gateway-beu-test-mode">' .__('EL MODO TEST ESTÁ HABILITADO', 'woocommerce-beu-payment-gateway').'</h1>';
+                echo '<h1 style="color: #8d0a0a;" class="wc-payment-gateway-beu-test-mode">' .__('TEST MODE IS ENABLED', 'woocommerce-beu').'</h1>';
             }
             ?>
             <div id="post-body" class="metabox-holder columns-2">
@@ -282,7 +281,7 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
                 <div id="postbox-container-1" class="postbox-container">
                     <div id="side-sortables" class="meta-box-sortables ui-sortable">
                         <div class="postbox ">
-                            <h3 class="hndle"><span><i class="dashicons dashicons-editor-help"></i>&nbsp;&nbsp;Soporte Plugin</span></h3>
+                            <h3 class="handle"><span><i class="dashicons dashicons-editor-help"></i>&nbsp;&nbsp;Soporte Plugin</span></h3>
                             <hr>
                             <div class="inside">
                                 <div class="support-widget">
@@ -292,7 +291,7 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
                                         Quieres ser parte, contáctanos</p>
                                     <ul>
                                         <li>» <a href="https://beu.is/submit-ticket/" target="_blank">Soporte</a></li>
-                                        <li>» <a href="https://beu.is/woocommerce-beu-payment-gateway/" target="_blank">Documentación.</a></li>
+                                        <li>» <a href="https://beu.is/woocommerce-beu-payment-gateway/" target="_blank"><?php __('Documentation.', 'woocommerce-beu') ?></a></li>
                                     </ul>
 
                                 </div>
@@ -325,7 +324,7 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
 
     function beu_tc_payment_scripts()
     {
-        require_once( WCBEU_PLUGIN_FILE . '/includes/class-wc-beu-plugin-styles.php');
+        require_once WCBEU_PLUGIN_FILE . '/includes/class-wc-beu-plugin-styles.php';
         $beu_styles_gateway = new WC_Beu_Plugin_Styles();
     }
 
@@ -422,7 +421,7 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
         if ($commission > 0) {
             ?>
             <tr>
-                <th><?php esc_html_e('Comisión Beu '. $percentage_beu_cd . '%'); ?></th>
+                <th><?php esc_html_e('Beu Commission '. $percentage_beu_cd . '%'); ?></th>
                 <td><?php echo wc_price($commission); ?></td>
             </tr>
             <?php
@@ -455,7 +454,7 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
         $beu_query_string = http_build_query( $parameters_beu_settings );
         $beu_url_checkout = $this->checkout_url . '?' . $beu_query_string;
 
-        $order->update_status('processing', __('Esperando el proceso del pago.'));
+        $order->update_status('processing', __('Waiting for the payment.'));
 
         return array(
             'result' => 'success',
@@ -473,11 +472,11 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
 
     function beu_tc_process_payment_page($order_id ) {
         $order = new WC_Order( $order_id );
-        echo '<p>' . __( 'Redireccionando al proveedor de pagos.') . '</p>';
+        echo '<p>' . __( 'Redirecting to the payment provider.') . '</p>';
 
-        $order->add_order_note( __( 'Pedido realizado y el usuario será redirigido a la pasarela de pagos.') );
+        $order->add_order_note( __( 'Order placed and the user will be redirected to the payment gateway.', 'woocommerce-beu') );
 
-        echo '<p>'.__('Gracias por su pedido, de clic en el botón que aparece para continuar el pago con Beu.', 'woocommerce-beu-payment-gateway').'</p>';
+        echo '<p>'.__('Thank you for your order, click on the button that appears to continue payment with Beu.', 'woocommerce-beu').'</p>';
         echo $this -> beu_tc_generate_beu_payment_data_form( $order_id );
     }
 
@@ -495,7 +494,7 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
         $beu_query_string = http_build_query($parameters_beu_settings);
         $beu_url_checkout = $this->checkout_url . '?' . $beu_query_string;
 
-        $order->update_status('processing', __('Esperando el proceso del pago.'));
+        $order->update_status('processing', __('Waiting for the payment.', 'woocommerce-beu'));
 
 //        $code='jQuery("#submit_beu_form").click();';
 //
@@ -506,7 +505,7 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
 //        }
 
         return '<form action="'.$beu_url_checkout.'" method="get" id="beu_form" target="_top">' . implode('', $beu_params_array )
-            . '<input type="submit" id="submit_beu_form" value="' .__('Pagar', 'woocommerce-beu-payment-gateway').'" /><a href="'.esc_url( $order->get_cancel_order_url() ).'">'.__( 'Cancelar orden', 'woocommerce-beu-payment-gateway').'</a></form>';
+            . '<input type="submit" id="submit_beu_form" value="' .__('Pay', 'woocommerce-beu').'" /><a href="'.esc_url( $order->get_cancel_order_url() ).'">'.__( 'Cancel order', 'woocommerce-beu').'</a></form>';
 
     }
 
@@ -538,7 +537,9 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
                     $transaction_status = $this->beu_tc_get_transaction_status($gateway_order_status['message']);
                     switch ($transaction_status) {
                         case 'completed':
-                            $this->msg['message'] = "Gracias por comprar con nosotros. ¡El pago se ha procesado exitosamente!.";
+	                        $this->msg['message'] =
+                                __('Thank you for shopping with us, your payment has been processed successfully!',
+                                    'woocommerce-beu');
                             $this->msg['class'] = 'success-color';
                             $order->update_status('completed');
                             $order->reduce_order_stock();
@@ -546,34 +547,64 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
                             $woocommerce->cart->empty_cart();
                             break;
                         case 'failed':
-                            $order->update_status('failed', 'Gracias por comprar con nosotros, la transacción ha sido declinada. Resultado: '. $gateway_order_status['message']);
-                            $this->msg['message'] = "Error en la validación con Beu: ". $gateway_order_status['message'];
+                            $order->update_status('failed',
+                                'Gracias por comprar con nosotros, la transacción ha sido declinada. Resultado: '
+                                . $gateway_order_status['message']);
+	                        $this->msg['message'] = sprintf(__('Payment error: Status of transaction %1$s
+	                         Unfortunately, your order cannot be processed; the bank/merchant ' .
+                                                               'has declined your transaction.
+                                                               Please try to make the purchase again.',
+                                'woocommerce-beu'),
+                                $gateway_order_status['message']);
                             $this->msg['class'] = 'alert-color';
-                            $order->add_order_note('Error transacción declinada con Beu. Orden:'.$order_id . ' ' . $gateway_order_status['message']);
+                            $order->add_order_note('Error transacción declinada con Beu. Orden: '.$order_id . ' ' .
+                                                   $gateway_order_status['message']);
                             break;
+	                    case 'processing':
+		                    $order->update_status('on-hold',
+                                'Gracias por comprar con nosotros, la transacción está en estado pendiente. Resultado: '
+                                . $gateway_order_status['message']);
+		                    $this->msg['message'] = sprintf(__('Transaction is in pending status, result: %1$s',
+                                'woocommerce-beu'), $gateway_order_status['message']);
+		                    $this->msg['class'] = 'secondary-color';
+		                    $order->add_order_note('La transacción está en estado pendiente. Orden:'.$order_id . ' '
+                                                   . $gateway_order_status['message']);
+		                    break;
                     }
 
                 }
 
                 if ($gateway_order_status['statusCode'] == 404) {
-                    $order->update_status('failed', 'Gracias por comprar con nosotros. Resultado: '. $gateway_order_status['message']);
-                    $this->msg['message'] = "Error en la validación con Beu: ". $gateway_order_status['message'];
+                    $order->update_status('failed', 'Gracias por comprar con nosotros. Resultado: '
+                                                    . $gateway_order_status['message']);
+	                $this->msg['message'] = sprintf(__('Payment error: Status of transaction %1$s
+	                         Unfortunately, your order cannot be processed; the bank/merchant ' .
+	                                                   'has declined your transaction.
+                                                               Please try to make the purchase again.',
+		                'woocommerce-beu'),
+		                $gateway_order_status['message']);
                     $this->msg['class'] = 'alert-color';
-                    $order->add_order_note('Error en la validación con Beu. Orden:'.$order_id . ' ' . $gateway_order_status['message']);
+                    $order->add_order_note('Error en la validación con Beu. Orden:'.$order_id . ' ' .
+                                           $gateway_order_status['message']);
                 }
 
                 if ($gateway_order_status['statusCode'] == 500) {
                     $order->update_status('on-hold', 'El pago actualmente se encuentra en espera.');
                     $order->reduce_order_stock();
                     $order->add_order_note('Beu el pago actualmente está en espera. Orden:'.$order_id);
-                    $this->msg['message'] = "Gracias por comprar con nosotros. En estos momentos su transacción se encuentra en espera.";
+	                $this->msg['message'] =
+                        __( 'Thank you for shopping with us. Your transaction is currently on hold.',
+                            'woocommerce-beu');
                     $this->msg['class'] = 'secondary-color';
                 }
             }
 
-            $redirect_url = ($this->return_url == 'default' || $this->return_url == "" || $this->return_url == 0) ? $order->get_checkout_order_received_url() : get_permalink($this->return_url);
+            $redirect_url = ($this->return_url == 'default' || $this->return_url == "" || $this->return_url == 0) ?
+                $order->get_checkout_order_received_url() : get_permalink($this->return_url);
             //For wooCoomerce 2.0
-            $redirect_url = add_query_arg(array('msg' => urlencode($this->msg['message']), 'type' => $this->msg['class']), $redirect_url);
+            $redirect_url = add_query_arg(array('msg' => urlencode($this->msg['message']),
+                                                'type' => $this->msg['class']),
+                $redirect_url);
 
             wp_redirect($redirect_url);
 //            $this->beu_tc_process_payment_response($transaction_status);

@@ -6,10 +6,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WC_Beu_Payment {
     public function __construct() {
-        require_once ( WCBEU_ABSPATH . '/includes/class-wc-beu-gateway-helper.php' );
-        require_once(WCBEU_ABSPATH . '/includes/class-wc-beu-payment-gateway-settings.php' );
-        require_once( WCBEU_ABSPATH . '/includes/class-wc-beu-gateway-credit-card-payment.php' );
-        require_once( WCBEU_ABSPATH . '/includes/class-wc-beu-gateway-pse-payment.php' );
+        require_once  WCBEU_ABSPATH . '/includes/class-wc-beu-gateway-helper.php';
+        require_once WCBEU_ABSPATH . '/includes/class-wc-beu-payment-gateway-settings.php';
+        require_once WCBEU_ABSPATH . '/includes/class-wc-beu-gateway-credit-card-payment.php';
+        require_once WCBEU_ABSPATH . '/includes/class-wc-beu-gateway-pse-payment.php';
         register_activation_hook( __FILE__, 'register_beu_response_pages' );
         add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ),  array( $this, 'WC_Beu_Action_Links') );
         add_filter( 'woocommerce_payment_gateways', array( $this, 'WC_Add_Beu_Gateway') );
@@ -34,11 +34,11 @@ class WC_Beu_Payment {
 
             $pages = array(
                 array(
-                    'title'    => 'Respuesta transacción exitosa Beu',
+                    'title'    => __('Response transaction successful Beu', 'woocommerce-beu'),
                     'template' => 'woocommerce-beu-gateway-response-success-page-template.php',
                 ),
                 array(
-                    'title'    => 'Respuesta transacción fallida Beu',
+                    'title'    => __('Respuesta transacción fallida Beu', 'woocommerce-beu'),
                     'template' => 'woocommerce-beu-gateway-response-error-page-template.php',
                 ),
             );
@@ -55,7 +55,7 @@ class WC_Beu_Payment {
                 update_post_meta($post_id, '_wp_page_template', $page['template']);
             }
 
-        $success_page = get_page_by_title('Respuesta transacción exitosa Beu');
+        $success_page = get_page_by_title('Response transaction successful Beu');
         $error_page = get_page_by_title('Respuesta transacción fallida Beu');
 
         if ($success_page) {

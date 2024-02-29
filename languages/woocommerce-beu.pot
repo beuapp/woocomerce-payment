@@ -1,0 +1,259 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Beu Payment Gateway\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:26
+#: includes/class-wc-beu-gateway-pse-payment.php:26
+msgid "Payments with BEU"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:27
+msgid "Beu Credit Card"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:28
+#: includes/class-wc-beu-gateway-credit-card-payment.php:222
+msgid "Pay by credit card card"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:198
+#: includes/class-wc-beu-gateway-pse-payment.php:198
+msgid "Development Mode"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:199
+#: includes/class-wc-beu-gateway-pse-payment.php:199
+msgid "Enable mode development"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:201
+#: includes/class-wc-beu-gateway-pse-payment.php:201
+msgid "Check to enable the development mode."
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:206
+#: includes/class-wc-beu-gateway-pse-payment.php:206
+msgid "Enable/Disable"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:207
+#: includes/class-wc-beu-gateway-pse-payment.php:207
+msgid "Enable BEU"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:209
+#: includes/class-wc-beu-gateway-pse-payment.php:209
+msgid "Activates or deactivates the component"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:214
+#: includes/class-wc-beu-gateway-pse-payment.php:214
+msgid "Title"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:216
+#: includes/class-wc-beu-gateway-pse-payment.php:216
+msgid "Title that the user will see during checkout."
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:217
+msgid "Credit Card"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:219
+#: includes/class-wc-beu-gateway-pse-payment.php:219
+msgid "Description"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:220
+#: includes/class-wc-beu-gateway-pse-payment.php:220
+msgid "textarea"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:221
+#: includes/class-wc-beu-gateway-pse-payment.php:221
+msgid "Message to be displayed to the user during payment"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:226
+#: includes/class-wc-beu-gateway-pse-payment.php:226
+msgid "Return URL"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:228
+#: includes/class-wc-beu-gateway-pse-payment.php:228
+msgid "Select Page"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:229
+#: includes/class-wc-beu-gateway-pse-payment.php:229
+msgid "I selected URL of return after payment."
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:233
+#: includes/class-wc-beu-gateway-pse-payment.php:233
+msgid "% Beu"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:235
+#: includes/class-wc-beu-gateway-pse-payment.php:235
+msgid "Enter the % in Beu, e.g.: 3%"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:244
+#: includes/class-wc-beu-gateway-pse-payment.php:244
+msgid "ProfileId"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:246
+#: includes/class-wc-beu-gateway-pse-payment.php:246
+msgid "Enter the ProfileId"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:251
+#: includes/class-wc-beu-gateway-pse-payment.php:251
+msgid "ShortId"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:253
+#: includes/class-wc-beu-gateway-pse-payment.php:253
+msgid "Enter the ShortId."
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:258
+#: includes/class-wc-beu-gateway-pse-payment.php:258
+msgid "Token"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:260
+#: includes/class-wc-beu-gateway-pse-payment.php:260
+msgid "Enter the token here."
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:269
+#: includes/class-wc-beu-gateway-pse-payment.php:269
+msgid "Custom Payment Settings"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:273
+#: includes/class-wc-beu-gateway-pse-payment.php:273
+msgid "TEST MODE IS ENABLED"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:295
+#: includes/class-wc-beu-gateway-pse-payment.php:295
+msgid "Documentation."
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:425
+#: includes/class-wc-beu-gateway-pse-payment.php:423
+msgid "Beu Commission "
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:458
+#: includes/class-wc-beu-gateway-credit-card-payment.php:498
+#: includes/class-wc-beu-gateway-pse-payment.php:456
+#: includes/class-wc-beu-gateway-pse-payment.php:496
+msgid "Waiting for the payment."
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:476
+#: includes/class-wc-beu-gateway-pse-payment.php:474
+msgid "Redirecting to the payment provider."
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:478
+#: includes/class-wc-beu-gateway-pse-payment.php:476
+msgid "Order placed and the user will be redirected to the payment gateway."
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:480
+#: includes/class-wc-beu-gateway-pse-payment.php:478
+msgid "Thank you for your order, click on the button that appears to continue payment with Beu."
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:509
+#: includes/class-wc-beu-gateway-pse-payment.php:507
+msgid "Pay"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:509
+#: includes/class-wc-beu-gateway-pse-payment.php:507
+msgid "Cancel order"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:541
+#: includes/class-wc-beu-gateway-pse-payment.php:538
+msgid "Thank you for shopping with us, your payment has been processed successfully!"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:550
+#: includes/class-wc-beu-gateway-credit-card-payment.php:560
+#: includes/class-wc-beu-gateway-pse-payment.php:547
+#: includes/class-wc-beu-gateway-pse-payment.php:557
+#, php-format
+msgid ""
+"Payment error: Status of transaction %1$s\n"
+"\t                         Unfortunately, your order cannot be processed; the bank/merchant "
+"has declined your transaction.\n"
+"                                                               Please try to make the "
+"purchase again."
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:556
+#: includes/class-wc-beu-gateway-pse-payment.php:552
+msgid "Transaction is in pending status, result: %1$s"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-credit-card-payment.php:569
+#: includes/class-wc-beu-gateway-pse-payment.php:566
+msgid "Thank you for shopping with us. Your transaction is currently on hold."
+msgstr ""
+
+#: includes/class-wc-beu-gateway-helper.php:70
+msgid "Default Page"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-helper.php:72
+msgid "Orders Page"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-helper.php:73
+msgid "View Order Page"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-pse-payment.php:27
+msgid "Beu PSE"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-pse-payment.php:28
+#: includes/class-wc-beu-gateway-pse-payment.php:222
+msgid "Pay with PSE"
+msgstr ""
+
+#: includes/class-wc-beu-gateway-pse-payment.php:217
+msgid "PSE"
+msgstr ""
+
+#: includes/class-wc-beu-payment.php:37
+msgid "Response transaction successful Beu"
+msgstr ""
+
+#: templates/payment-return-template.php:10
+msgid "Transaction Status"
+msgstr ""
+
+#: templates/payment-return-template.php:12
+msgid "Thank you for your purchase!"
+msgstr ""

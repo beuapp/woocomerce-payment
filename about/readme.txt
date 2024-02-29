@@ -3,7 +3,7 @@ Contributors: @johnhack10
 Tags: Pasarela de pagos, Beu
 Stable tag: 0.0.1
 Autor: Beu
-Versión: 0.0.1
+Versión: 0.0.2
 Requires at least: 6.3.2
 Tested up to : 6.3.2
 WC Requires at least: 8.2.0
@@ -63,6 +63,10 @@ Seguir los siguientes pasos para conectar el plugin con tu configuración Beu:
 
 
 == Changelog ==
+
+= [0.0.2] =
+* Se cambia mensajes de usuario a ingles por defecto y se deja para la traducción al español
+* Se adiciona mensaje al usuario cuando la transación está en estado pendiente.
 
 = [0.0.1] =
 
