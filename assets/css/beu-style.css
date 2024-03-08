@@ -1,0 +1,11 @@
+.wc-payment-gateway-beu-test-mode {
+    color: red;
+}
+
+.wc-payment-gateway-beu-logo {
+    background-color: rgb(24, 25, 31);
+    width: 70%;
+    margin: 0 auto;
+    position: relative;
+    display: inherit;
+}

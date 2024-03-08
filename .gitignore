@@ -1,0 +1,7 @@
+.idea
+qodana.yaml
+sonar-project.properties
+horusec-config.json
+docker-compose.yml
+.horusec
+report.json
