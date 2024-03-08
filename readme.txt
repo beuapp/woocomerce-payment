@@ -64,6 +64,11 @@ Seguir los siguientes pasos para conectar el plugin con tu configuración Beu:
 
 == Changelog ==
 
+= [0.0.3] =
+
+* Se añade el cálculo del Fee para la pasarela de pagos para la opción de tarjeta de crédito y PSE
+* Se activa funcionalidad para traducción de texto en_US y es_CO
+
 = [0.0.2] =
 * Se cambia mensajes de usuario a ingles por defecto y se deja para la traducción al español
 * Se adiciona mensaje al usuario cuando la transación está en estado pendiente.

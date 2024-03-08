@@ -62,6 +62,10 @@ class WC_Beu_Credit_Card_Payment_Gateway extends WC_Payment_Gateway {
         add_action( 'woocommerce_receipt_' . $this->id , array( $this, 'beu_tc_process_payment_page'));
     }
 
+     public function beu_get_tc_commission() {
+        return $this->get_option( 'percentage_beu_cd' );
+     }
+
     function beu_tc_add_commission_to_cart_total($cart ) {
 
         $commission_percentage = $this->get_option( 'percentage_beu_cd' );

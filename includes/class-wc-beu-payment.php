@@ -6,11 +6,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WC_Beu_Payment {
     public function __construct() {
-        require_once  WCBEU_ABSPATH . '/includes/class-wc-beu-gateway-helper.php';
+        require_once WCBEU_ABSPATH . '/includes/class-wc-beu-gateway-helper.php';
         require_once WCBEU_ABSPATH . '/includes/class-wc-beu-payment-gateway-settings.php';
         require_once WCBEU_ABSPATH . '/includes/class-wc-beu-gateway-credit-card-payment.php';
         require_once WCBEU_ABSPATH . '/includes/class-wc-beu-gateway-pse-payment.php';
-        register_activation_hook( __FILE__, 'register_beu_response_pages' );
+
+	    register_activation_hook( __FILE__, 'register_beu_response_pages' );
         add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ),  array( $this, 'WC_Beu_Action_Links') );
         add_filter( 'woocommerce_payment_gateways', array( $this, 'WC_Add_Beu_Gateway') );
     }
